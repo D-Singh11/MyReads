@@ -33,7 +33,7 @@ class BooksApp extends React.Component {
             </div>
           </div>
           <div className="open-search">
-            <Link>
+            <Link to='/search'>
               <button>Add a book</button>
             </Link>
           </div>
