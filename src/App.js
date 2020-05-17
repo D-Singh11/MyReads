@@ -3,6 +3,7 @@ import React from 'react'
 import './App.css'
 import SearchBooks from './components/SearchBooks'
 import BookShelf from './components/BookShelf'
+import { Link } from 'react-router-dom'
 
 
 class BooksApp extends React.Component {
@@ -13,31 +14,31 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
   }
 
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchBooks />
-        ) : (
-            <div className="list-books">
-              <div className="list-books-title">
-                <h1>MyReads</h1>
-              </div>
-              <div className="list-books-content">
-                <div>
-                  <BookShelf title={"Currently Reading"} />
-                  <BookShelf title={"Want to Read"} />
-                  <BookShelf title={"Read"} />
-                </div>
-              </div>
-              <div className="open-search">
-                <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-              </div>
+        <SearchBooks />
+
+        <div className="list-books">
+          <div className="list-books-title">
+            <h1>MyReads</h1>
+          </div>
+          <div className="list-books-content">
+            <div>
+              <BookShelf title={"Currently Reading"} />
+              <BookShelf title={"Want to Read"} />
+              <BookShelf title={"Read"} />
             </div>
-          )}
+          </div>
+          <div className="open-search">
+            <Link>
+              <button>Add a book</button>
+            </Link>
+          </div>
+        </div>
+
       </div>
     )
   }
