@@ -2,7 +2,7 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './components/SearchBooks'
-import BookList from './components/BookList'
+import BookShelf from './components/BookShelf'
 
 
 class BooksApp extends React.Component {
@@ -28,24 +28,9 @@ class BooksApp extends React.Component {
               </div>
               <div className="list-books-content">
                 <div>
-                  <div className="bookshelf">
-                    <h2 className="bookshelf-title">Currently Reading</h2>
-                    <div className="bookshelf-books">
-                      <BookList/>
-                    </div>
-                  </div>
-                  <div className="bookshelf">
-                    <h2 className="bookshelf-title">Want to Read</h2>
-                    <div className="bookshelf-books">
-                      <BookList/>
-                    </div>
-                  </div>
-                  <div className="bookshelf">
-                    <h2 className="bookshelf-title">Read</h2>
-                    <div className="bookshelf-books">
-                      <BookList/>
-                    </div>
-                  </div>
+                  <BookShelf title={"Currently Reading"} />
+                  <BookShelf title={"Want to Read"} />
+                  <BookShelf title={"Read"} />
                 </div>
               </div>
               <div className="open-search">
