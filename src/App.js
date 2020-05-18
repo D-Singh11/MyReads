@@ -23,9 +23,9 @@ class BooksApp extends React.Component {
 
   filterBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName);
 
-  updateShelf = (bookId, shelf) => {
-    BooksAPI.update(bookId, shelf).then(response => {
-      const bookLocation = this.state.books.findIndex(element => element.id === bookId.id)
+  updateShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(response => {
+      const bookLocation = this.state.books.findIndex(element => element.id === book.id)
       let books = [...this.state.books];
       books[bookLocation].shelf = shelf;
       this.setState({
