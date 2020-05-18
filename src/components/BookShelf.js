@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 
 class BookShelf extends Component {
     static propTypes = {
-        title: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired,
+        books: PropTypes.array.isRequired
     }
 
     render() {
@@ -12,7 +13,7 @@ class BookShelf extends Component {
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
-                    <BookList />
+                    <BookList books={this.props.books}/>
                 </div>
             </div>
         )
