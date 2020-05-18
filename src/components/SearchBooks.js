@@ -11,9 +11,8 @@ class SearchBooks extends Component {
 
   handleChange = (event) => {
     if (event.target.value !== '') {
-      BooksAPI.search(event.target.value).then(books => {
+      BooksAPI.search(event.target.value.trim()).then(books => {
         this.updateState(books);
-        console.log(this.state);
       })
     }
     else{
@@ -47,7 +46,10 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid"></ol>
-          {/* {this.state.books.length > 0 && <BookList books={this.state.books} />} */}
+          {this.state.books.length > 0 && <BookList books={this.state.books} onShelfChange={(book,shelf) => {
+                this.props.addBookToShelf(book,shelf);
+                console.log('search');
+            }}/>}
         </div>
       </div>
     )

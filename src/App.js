@@ -23,22 +23,30 @@ class BooksApp extends React.Component {
 
   filterBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName);
 
-  updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(response => {
-      const bookLocation = this.state.books.findIndex(element => element.id === book.id)
-      let books = [...this.state.books];
-      books[bookLocation].shelf = shelf;
-      this.setState({
-        books
-      });
+  updateShelf = (bookId, shelf) => {
+    BooksAPI.update(bookId, shelf).then(response => {
+      const bookLocation = this.state.books.findIndex(element => element.id === bookId.id);
+      console.log(bookLocation);
+      if (bookLocation !== -1) {
+        this.moveShelf(bookId, shelf);
+      }
     })
+  }
+
+  moveShelf = (bookId, shelf) => {
+    const bookLocation = this.state.books.findIndex(element => element.id === bookId.id)
+    let books = [...this.state.books];
+    books[bookLocation].shelf = shelf;
+    this.setState({
+      books
+    });
   }
 
   render() {
     return (
       <div className="app">
         <Route path="/search" render={() => (
-          <SearchBooks />
+          <SearchBooks addBookToShelf={this.updateShelf} />
         )} />
 
         <Route exact path="/" render={() => (
