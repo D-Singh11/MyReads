@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class Book extends Component {
-    
+
     render() {
         const {book} = this.props;
         return (
@@ -19,7 +19,10 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{book.title}</div>
-                <div className="book-authors">Harper Lee</div>
+                {book.authors != undefined &&
+                    <div className="book-authors">
+                        {book.authors.map(author => <p key={author} >{author}</p>)}
+                    </div>}
             </div>
         )
     }
