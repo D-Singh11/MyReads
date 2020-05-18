@@ -4,7 +4,7 @@ class Book extends Component {
 
     handleSelect= (event) => {
         const shelf = event.target.value;
-        console.log(shelf);
+        this.props.onShelfChange(this.props.book, shelf);
     }
     render() {
         const {book} = this.props;

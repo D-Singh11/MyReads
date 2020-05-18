@@ -47,7 +47,7 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid"></ol>
-          {this.state.books.length > 0 && <BookList books={this.state.books} />}
+          {/* {this.state.books.length > 0 && <BookList books={this.state.books} />} */}
         </div>
       </div>
     )
