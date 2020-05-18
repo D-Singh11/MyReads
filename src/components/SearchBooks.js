@@ -10,15 +10,22 @@ class SearchBooks extends Component {
   }
 
   handleChange = (event) => {
-    const serachedBooks = event.target.value !== '' ?
-      (BooksAPI.search(event.target.value).then(books => {
-        this.setState({
-          books
-        });
+    if (event.target.value !== '') {
+      BooksAPI.search(event.target.value).then(books => {
+        this.updateState(books);
         console.log(this.state);
-      })) : this.setState({
-        books :[]
-      });
+      })
+    }
+    else{
+      this.updateState([]);
+    }
+
+  }
+
+  updateState(newState) {
+    this.setState({
+      books: newState
+    });
   }
 
   render() {
@@ -36,12 +43,11 @@ class SearchBooks extends Component {
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
             <input type="text" placeholder="Search by title or author" onChange={this.handleChange} />
-
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid"></ol>
-          { this.state.books.length > 0 && <BookList books={this.state.books}/>}
+          {this.state.books.length > 0 && <BookList books={this.state.books} />}
         </div>
       </div>
     )
