@@ -1,5 +1,4 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './components/SearchBooks'
 import BookShelf from './components/BookShelf'
@@ -13,10 +12,21 @@ class BooksApp extends React.Component {
     books: []
   }
 
+
+  /**
+  * @description Lidecycle hook called when DOM is rendered
+  * It call the local getBooks() function which than makes API call
+  */
+
   componentDidMount() {
     this.getBooks();
   }
 
+
+  /**
+  * @description Call API to get shelved books
+  * Also update the component state
+  */
 
   getBooks() {
     BooksAPI.getAll().then(myBooks => {
@@ -27,14 +37,38 @@ class BooksApp extends React.Component {
     });
   };
 
+
+ /**
+ * @description Filters thr books based upon shelf
+ * @param {string} shelfName
+ * @returns {array} Filtered books 
+ */
+
   filterBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName);
+
+
+/**
+* @description Updates the status of book's shelf in the backend
+* by calling BooksPI's getAll() method
+* @param {object} book
+* @param {string} shelf 
+*/
 
   updateShelf = (bookId, shelf) => {
     BooksAPI.update(bookId, shelf).then(response => {
       const bookLocation = this.state.books.findIndex(element => element.id === bookId.id);
-      return bookLocation !== -1 && shelf != 'none' ? this.moveShelf(bookId, shelf) :  this.getBooks();
+      return bookLocation !== -1 && shelf !== 'none' ? this.moveShelf(bookId, shelf) : this.getBooks();
     })
   };
+
+
+/**
+* @description Moves the book from one shelf to other.
+* Also updates the component state to make re-render page
+* by calling BooksPI's getAll() method
+* @param {object} book
+* @param {string} shelf 
+*/
 
   moveShelf = (bookId, shelf) => {
     const bookLocation = this.state.books.findIndex(element => element.id === bookId.id)
@@ -44,6 +78,12 @@ class BooksApp extends React.Component {
       books
     });
   };
+
+
+  /**
+* @description Renders the component to DOM
+* by calling BooksPI's getAll() method 
+*/
 
   render() {
     let shelvedBooks = {};
