@@ -54,10 +54,10 @@ class BooksApp extends React.Component {
 * @param {string} shelf 
 */
 
-  updateShelf = (bookId, shelf) => {
-    BooksAPI.update(bookId, shelf).then(response => {
-      const bookLocation = this.state.books.findIndex(element => element.id === bookId.id);
-      return bookLocation !== -1 && shelf !== 'none' ? this.moveShelf(bookId, shelf) : this.getBooks();
+  updateShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(response => {
+      const bookLocation = this.state.books.findIndex(element => element.id === book.id);
+      return bookLocation !== -1 && shelf !== 'none' ? this.moveShelf(book, shelf) : this.getBooks();
     })
   };
 
@@ -70,8 +70,8 @@ class BooksApp extends React.Component {
 * @param {string} shelf 
 */
 
-  moveShelf = (bookId, shelf) => {
-    const bookLocation = this.state.books.findIndex(element => element.id === bookId.id)
+  moveShelf = (book, shelf) => {
+    const bookLocation = this.state.books.findIndex(element => element.id === book.id)
     let books = [...this.state.books];
     books[bookLocation].shelf = shelf;
     this.setState({
