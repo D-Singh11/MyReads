@@ -14,11 +14,17 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    this.getBooks();
+  }
+
+
+  getBooks() {
     BooksAPI.getAll().then(myBooks => {
+      console.log('count', myBooks.length);
       this.setState({
         books: myBooks
       });
-    })
+    });
   }
 
   filterBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName);
@@ -26,9 +32,11 @@ class BooksApp extends React.Component {
   updateShelf = (bookId, shelf) => {
     BooksAPI.update(bookId, shelf).then(response => {
       const bookLocation = this.state.books.findIndex(element => element.id === bookId.id);
-      console.log(bookLocation);
-      if (bookLocation !== -1) {
+      if (bookLocation !== -1 && shelf != 'none') {
         this.moveShelf(bookId, shelf);
+      }
+      else {
+        this.getBooks();
       }
     })
   }
@@ -47,11 +55,10 @@ class BooksApp extends React.Component {
     this.state.books.forEach(myBook => {
       shelvedBooks[myBook.id] = myBook.shelf;
     })
-    console.log(shelvedBooks);
     return (
       <div className="app">
-        <Route path="/search" render={() => ( 
-          <SearchBooks addBookToShelf={this.updateShelf} shelvedBooks={shelvedBooks}/>
+        <Route path="/search" render={() => (
+          <SearchBooks addBookToShelf={this.updateShelf} shelvedBooks={shelvedBooks} />
         )} />
 
         <Route exact path="/" render={() => (
