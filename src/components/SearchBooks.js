@@ -11,14 +11,25 @@ class SearchBooks extends Component {
 
   handleChange = (event) => {
     if (event.target.value !== '') {
-      BooksAPI.search(event.target.value.trim()).then(books => {
+      BooksAPI.search(event.target.value.trim()).then(response => {
+        const books = this.booksLreadyOnShelves(response, this.props.shelvedBooks);
         this.updateState(books);
       })
     }
-    else{
+    else {
       this.updateState([]);
     }
 
+  }
+
+  booksLreadyOnShelves(books, shelvedBooks) {
+    const result = books.map(book => {
+      if (shelvedBooks.hasOwnProperty(book.id)) {
+        book.shelf = shelvedBooks[book.id];
+      }
+      return book;
+    });
+    return result;
   }
 
   updateState(newState) {
@@ -28,7 +39,6 @@ class SearchBooks extends Component {
   }
 
   render() {
-    console.log(props.shelvedBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -47,10 +57,10 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid"></ol>
-          {this.state.books.length > 0 && <BookList books={this.state.books} onShelfChange={(book,shelf) => {
-                this.props.addBookToShelf(book,shelf);
-                console.log('search');
-            }}/>}
+          {this.state.books.length > 0 && <BookList books={this.state.books} onShelfChange={(book, shelf) => {
+            this.props.addBookToShelf(book, shelf);
+            console.log('search');
+          }} />}
         </div>
       </div>
     )
