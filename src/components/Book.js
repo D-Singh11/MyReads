@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Book extends Component {
+
+    static propTypes = {
+        book: PropTypes.object.isRequired,
+        onShelfChange: PropTypes.func.isRequired
+    }
 
     /**
    * @description Function is called when user selects the shelf status of
@@ -33,7 +39,8 @@ class Book extends Component {
                     </div>
                     <div className="book-shelf-changer">
                         <select onChange={this.handleSelect}
-                            defaultValue={book.hasOwnProperty('shelf') ? book.shelf : 'none'}>      // used to highlight correct shelf selection
+                        // used to highlight correct shelf selection
+                            defaultValue={book.hasOwnProperty('shelf') ? book.shelf : 'none'}>
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>

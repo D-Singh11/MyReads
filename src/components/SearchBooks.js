@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import BookList from './BookList';
+import PropTypes from 'prop-types';
 
 class SearchBooks extends Component {
+
+  static propTypes = {
+    shelvedBooks: PropTypes.object.isRequired,
+    addBookToShelf: PropTypes.func.isRequired
+  }
 
   state = {
     books: []
@@ -67,7 +73,7 @@ class SearchBooks extends Component {
   /**
   * @description Renders the SearchBooks component to DOM
   */
- 
+
   render() {
     return (
       <div className="search-books">

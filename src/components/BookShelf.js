@@ -6,12 +6,12 @@ class BookShelf extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         books: PropTypes.array.isRequired,
-        onShelfChange: PropTypes.func.isRequired,
+        onShelfChange: PropTypes.func.isRequired
     }
 
-  /**
-  * @description Renders the BookShelf component to DOM 
-  */
+    /**
+    * @description Renders the BookShelf component to DOM 
+    */
     render() {
         return (
             <div className="bookshelf">
