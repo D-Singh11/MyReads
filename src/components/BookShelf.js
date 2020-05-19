@@ -9,6 +9,9 @@ class BookShelf extends Component {
         onShelfChange: PropTypes.func.isRequired,
     }
 
+  /**
+  * @description Renders the BookShelf component to DOM 
+  */
     render() {
         return (
             <div className="bookshelf">

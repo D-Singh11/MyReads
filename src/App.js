@@ -38,21 +38,21 @@ class BooksApp extends React.Component {
   };
 
 
- /**
- * @description Filters thr books based upon shelf
- * @param {string} shelfName
- * @returns {array} Filtered books 
- */
+  /**
+  * @description Filters the books based upon shelf
+  * @param {string} shelfName
+  * @returns {array} Filtered books 
+  */
 
   filterBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName);
 
 
-/**
-* @description Updates the status of book's shelf in the backend
-* by calling BooksPI's getAll() method
-* @param {object} book
-* @param {string} shelf 
-*/
+  /**
+  * @description Updates the status of book's shelf in the backend
+  * by calling BooksPI's getAll() method
+  * @param {object} book
+  * @param {string} shelf 
+  */
 
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(response => {
@@ -62,14 +62,13 @@ class BooksApp extends React.Component {
   };
 
 
-/**
-* @description Moves the book from one shelf to other.
-* Also updates the component state to make re-render page
-* by calling BooksPI's getAll() method
-* @param {object} book
-* @param {string} shelf 
-*/
-
+  /**
+  * @description Moves the book from one shelf to other.
+  * Also updates the component state to make re-render page
+  * by calling BooksPI's getAll() method
+  * @param {object} book
+  * @param {string} shelf 
+  */
   moveShelf = (book, shelf) => {
     const bookLocation = this.state.books.findIndex(element => element.id === book.id)
     let books = [...this.state.books];
@@ -81,9 +80,8 @@ class BooksApp extends React.Component {
 
 
   /**
-* @description Renders the component to DOM
-* by calling BooksPI's getAll() method 
-*/
+  * @description Renders the App component to DOM 
+  */
 
   render() {
     let shelvedBooks = {};

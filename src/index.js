@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 
 ReactDOM.render(
+    // BrowserRouter used to apply routing to whole application
     <BrowserRouter>
         <App />
     </BrowserRouter>, document.getElementById('root'))
