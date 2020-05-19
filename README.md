@@ -3,7 +3,7 @@
 
 
 ## Introduction
-In the MyReads project is a bookshelf app that allows users to select and categorize books they have read, are currently reading, or want to read. The project emphasizes using React to build the application and provides an API server and client library that is used to persist information as user interact with the application.
+MyReads project is a bookshelf app that allows users to select and categorize books they have read, are currently reading, or want to read. The project emphasizes using React to build the application and provides an API server and client library that is used to persist information as user interact with the application.
 
 
 Main page displays a list of "shelves" (i.e. categories), each of which contains a number of books. The three shelves are:
