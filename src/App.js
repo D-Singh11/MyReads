@@ -45,7 +45,7 @@ class BooksApp extends React.Component {
   render() {
     let shelvedBooks = {}
     this.state.books.forEach(myBook => {
-      shelvedBooksIds[myBook.id] = myBook.shelf;
+      shelvedBooks[myBook.id] = myBook.shelf;
     })
     console.log(shelvedBooks);
     return (
