@@ -1,23 +1,22 @@
-import React from 'react'
-import './App.css'
-import SearchBooks from './components/SearchBooks'
-import BookShelf from './components/BookShelf'
-import { Link } from 'react-router-dom'
-import { Route } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
+import React from 'react';
+import './App.css';
+import SearchBooks from './components/SearchBooks';
+import BookShelf from './components/BookShelf';
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
 
 
 class BooksApp extends React.Component {
   state = {
     books: []
-  }
+  };
 
 
   /**
   * @description Lidecycle hook called when DOM is rendered
   * It call the local getBooks() function which than makes API call
   */
-
   componentDidMount() {
     this.getBooks();
   }
@@ -27,7 +26,6 @@ class BooksApp extends React.Component {
   * @description Call API to get shelved books
   * Also update the component state
   */
-
   getBooks() {
     BooksAPI.getAll().then(myBooks => {
       console.log('count', myBooks.length);
@@ -43,7 +41,6 @@ class BooksApp extends React.Component {
   * @param {string} shelfName
   * @returns {array} Filtered books 
   */
-
   filterBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName);
 
 
@@ -53,7 +50,6 @@ class BooksApp extends React.Component {
   * @param {object} book
   * @param {string} shelf 
   */
-
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(response => {
       const bookLocation = this.state.books.findIndex(element => element.id === book.id);
@@ -70,7 +66,7 @@ class BooksApp extends React.Component {
   * @param {string} shelf 
   */
   moveShelf = (book, shelf) => {
-    const bookLocation = this.state.books.findIndex(element => element.id === book.id)
+    const bookLocation = this.state.books.findIndex(element => element.id === book.id);
     let books = [...this.state.books];
     books[bookLocation].shelf = shelf;
     this.setState({
@@ -82,7 +78,6 @@ class BooksApp extends React.Component {
   /**
   * @description Renders the App component to DOM 
   */
-
   render() {
     let shelvedBooks = {};
     this.state.books.forEach(myBook => {
@@ -119,4 +114,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default BooksApp;

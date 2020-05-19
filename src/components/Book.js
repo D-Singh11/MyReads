@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Book extends Component {
 
     static propTypes = {
         book: PropTypes.object.isRequired,
         onShelfChange: PropTypes.func.isRequired
-    }
+    };
 
     /**
    * @description Function is called when user selects the shelf status of
@@ -15,7 +15,6 @@ class Book extends Component {
    * it selected book and shelf chosen
    * @param {event} event
    */
-
     handleSelect = (event) => {
         const shelf = event.target.value;
         this.props.onShelfChange(this.props.book, shelf);
@@ -25,7 +24,6 @@ class Book extends Component {
     /**
     * @description Renders the Book component to DOM
     */
-
     render() {
         const { book } = this.props;
         return (
@@ -60,4 +58,4 @@ class Book extends Component {
     }
 }
 
-export default Book
+export default Book;

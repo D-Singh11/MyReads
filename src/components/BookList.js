@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import Book from './Book'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import Book from './Book';
+import PropTypes from 'prop-types';
 
 class BookList extends Component {
 
     static propTypes = {
         books: PropTypes.array.isRequired,
         onShelfChange: PropTypes.func.isRequired,
-    }
+    };
 
     /**
     * @description Renders the BookList component to DOM
@@ -26,4 +26,4 @@ class BookList extends Component {
     }
 }
 
-export default BookList
+export default BookList;

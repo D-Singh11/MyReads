@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import * as BooksAPI from '../BooksAPI'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import * as BooksAPI from '../BooksAPI';
 import BookList from './BookList';
 import PropTypes from 'prop-types';
 
@@ -9,11 +9,12 @@ class SearchBooks extends Component {
   static propTypes = {
     shelvedBooks: PropTypes.object.isRequired,
     addBookToShelf: PropTypes.func.isRequired
-  }
+  };
 
   state = {
     books: []
-  }
+  };
+
 
   /**
    * @description Function is called when user enters text in search box
@@ -21,7 +22,6 @@ class SearchBooks extends Component {
    * Internally call updateState() function to update component state.
    * @param {event} event
    */
-
   handleChange = (event) => {
     if (event.target.value !== '') {
       BooksAPI.search(event.target.value.trim()).then(response => {
@@ -44,7 +44,6 @@ class SearchBooks extends Component {
  * @param {object} shelvedBooks
  * @returns {array} books
  */
-
   bookAlreadyOnShelves(books, shelvedBooks) {
     const result = books.map(book => {
       if (shelvedBooks.hasOwnProperty(book.id)) {
@@ -62,7 +61,6 @@ class SearchBooks extends Component {
  * at various places.
  * @param {books} newState
  */
-
   updateState(newState) {
     this.setState({
       books: newState
@@ -73,7 +71,6 @@ class SearchBooks extends Component {
   /**
   * @description Renders the SearchBooks component to DOM
   */
-
   render() {
     return (
       <div className="search-books">
