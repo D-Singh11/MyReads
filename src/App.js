@@ -28,7 +28,6 @@ class BooksApp extends React.Component {
   */
   getBooks() {
     BooksAPI.getAll().then(myBooks => {
-      console.log('count', myBooks.length);
       this.setState({
         books: myBooks
       });
