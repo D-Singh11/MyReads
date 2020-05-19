@@ -23,9 +23,10 @@ class SearchBooks extends Component {
    * @param {event} event
    */
   handleChange = (event) => {
-    if (event.target.value !== '') {
+    if (event.target.value.trim() !== '') {
       BooksAPI.search(event.target.value.trim()).then(response => {
-        const books = this.bookAlreadyOnShelves(response, this.props.shelvedBooks);
+        console.log(response);
+        const books = !response.hasOwnProperty('error') ? this.bookAlreadyOnShelves(response, this.props.shelvedBooks) : [];
         this.updateState(books);
       })
     }
