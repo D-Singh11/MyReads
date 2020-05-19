@@ -14,9 +14,9 @@ class BookShelf extends Component {
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
-                    <BookList books={this.props.books} onShelfChange={(book,shelf) => {
-                        this.props.onShelfChange(book,shelf);
-                        }}/>
+                    <BookList books={this.props.books} onShelfChange={(book, shelf) => {
+                        this.props.onShelfChange(book, shelf);
+                    }} />
                 </div>
             </div>
         )

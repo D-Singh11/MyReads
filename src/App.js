@@ -25,21 +25,16 @@ class BooksApp extends React.Component {
         books: myBooks
       });
     });
-  }
+  };
 
   filterBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName);
 
   updateShelf = (bookId, shelf) => {
     BooksAPI.update(bookId, shelf).then(response => {
       const bookLocation = this.state.books.findIndex(element => element.id === bookId.id);
-      if (bookLocation !== -1 && shelf != 'none') {
-        this.moveShelf(bookId, shelf);
-      }
-      else {
-        this.getBooks();
-      }
+      return bookLocation !== -1 && shelf != 'none' ? this.moveShelf(bookId, shelf) :  this.getBooks();
     })
-  }
+  };
 
   moveShelf = (bookId, shelf) => {
     const bookLocation = this.state.books.findIndex(element => element.id === bookId.id)
@@ -48,13 +43,14 @@ class BooksApp extends React.Component {
     this.setState({
       books
     });
-  }
+  };
 
   render() {
-    let shelvedBooks = {}
+    let shelvedBooks = {};
     this.state.books.forEach(myBook => {
       shelvedBooks[myBook.id] = myBook.shelf;
-    })
+    });
+
     return (
       <div className="app">
         <Route path="/search" render={() => (

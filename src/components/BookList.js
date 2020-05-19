@@ -4,8 +4,8 @@ import Book from './Book'
 class BookList extends Component {
     render() {
         const list = this.props.books.map(book => {
-            return (<li key={book.id}><Book book={book} onShelfChange={(book,shelf) => {
-                this.props.onShelfChange(book,shelf);
+            return (<li key={book.id}><Book book={book} onShelfChange={(book, shelf) => {
+                this.props.onShelfChange(book, shelf);
             }} /></li>)
         });
         return (
