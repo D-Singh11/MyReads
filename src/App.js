@@ -43,10 +43,15 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    let shelvedBooks = {}
+    this.state.books.forEach(myBook => {
+      shelvedBooksIds[myBook.id] = myBook.shelf;
+    })
+    console.log(shelvedBooks);
     return (
       <div className="app">
-        <Route path="/search" render={() => (
-          <SearchBooks addBookToShelf={this.updateShelf} />
+        <Route path="/search" render={() => ( 
+          <SearchBooks addBookToShelf={this.updateShelf} shelvedBooks={shelvedBooks}/>
         )} />
 
         <Route exact path="/" render={() => (

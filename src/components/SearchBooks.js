@@ -28,6 +28,7 @@ class SearchBooks extends Component {
   }
 
   render() {
+    console.log(props.shelvedBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">
