@@ -25,7 +25,6 @@ class SearchBooks extends Component {
   handleChange = (event) => {
     if (event.target.value.trim() !== '') {
       BooksAPI.search(event.target.value.trim()).then(response => {
-        console.log(response);
         const books = !response.hasOwnProperty('error') ? this.bookAlreadyOnShelves(response, this.props.shelvedBooks) : [];
         this.updateState(books);
       })
@@ -85,7 +84,6 @@ class SearchBooks extends Component {
           <ol className="books-grid"></ol>
           {this.state.books.length > 0 && <BookList books={this.state.books} onShelfChange={(book, shelf) => {
             this.props.addBookToShelf(book, shelf);
-            console.log('search');
           }} />}
         </div>
       </div>
